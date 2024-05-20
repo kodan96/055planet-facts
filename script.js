@@ -1,7 +1,8 @@
 $(document).ready(() => {
 
     const headerBtns = document.querySelectorAll('.header_nav--btn')
-
+    const toggleBtns = document.querySelectorAll('.toggle-btn')
+    let planetData = null;
     //-------------Functions--------------//
 
     $.fn.toggleAttr = function(attr, val1, val2) {
@@ -20,6 +21,8 @@ $(document).ready(() => {
         fetch('data.json')
         .then(response => response.json())
         .then(data => {
+
+            planetData = data;
 
             const planet = document.querySelector('.planet')
             planet.setAttribute('src', data[index].images.planet)
@@ -50,6 +53,84 @@ $(document).ready(() => {
         })
     }   
 
+    const navAnimation = () => {
+        const tl = gsap.timeline()
+        const nav = $('nav')
+        const navIsOpen = nav.hasClass('open')
+        const navItem = $('.nav_list-item')
+         
+        if(!navIsOpen) {
+            nav.addClass('open')
+            tl.to(navItem, {
+                duration: 0.5,
+                y: 0,
+                opacity: 1,
+                stagger: 0.2
+            }) 
+        } else {
+            tl.to(navItem, {
+                duration: 0.5,
+                y: '-100%',
+                opacity: 0,
+                stagger: 0.2
+            })
+            nav.removeClass('open')
+        }
+    }
+
+    const getActiveBtnIndex = () => {
+        const activeBtn = $('.header_nav--btn.active');
+        const index = $('.header_nav--btn').index(activeBtn);
+
+        return index;
+    }
+
+    const updateSections = (index) => {
+        
+        const activeIndex = getActiveBtnIndex();
+        const keys = ['planet', 'internal', 'planet'];
+        const sections = ['overview', 'structure', 'geology'];
+        const planetText = document.querySelector('.planet-text');
+        const sourceLink = document.querySelector('.source-link');
+        const planet = document.querySelector('.planet')
+        const updateAnim = $('.update-anim');
+        const tl = gsap.timeline();
+
+        
+        
+        const section = sections[index];
+
+        planetText.textContent = planetData[activeIndex][section].content
+        sourceLink.setAttribute('href', planetData[activeIndex][section].source)
+        planet.setAttribute('src', planetData[activeIndex].images[keys[index]])
+        
+        tl.to(updateAnim, {
+            duration: 0.5,
+            opacity: 1,
+            stagger: 0.2
+
+            
+        })
+
+        if(toggleBtns[2].classList.contains('toggled')) {
+            tl.to('.geology', {
+                duration: 0.5,
+                opacity: 1,
+                stagger: 0.2,
+            }, 0)
+        } else {
+            tl.to('.geology', {
+                duration: 0.5,
+                opacity: 0,
+                
+            }, 0)
+        }
+
+       
+
+        
+    }
+
     
 
   
@@ -59,16 +140,48 @@ $(document).ready(() => {
     //-------------Event Listeners--------------//
     $('.menu').on('click', (e) => {
         $(e.currentTarget).toggleAttr('aria-expanded', 'false', 'true')
-        $('nav').toggleClass('open')
+        navAnimation();
     })
 
     headerBtns.forEach((btn, i) => {
         btn.addEventListener('click', () => {
+            $(headerBtns).removeClass('active')
+            $(btn).addClass('active')
+            $(headerBtns).attr('aria-expanded', 'false')
+            $(btn).toggleAttr('aria-expanded', 'false', 'true')
+
+            
             fetchData(i);
-            $('nav').toggleClass('open');
+            navAnimation()
         })
         
     })
+
+    toggleBtns.forEach((btn, i) => {
+       
+        btn.addEventListener('click', () => {
+            tl = gsap.timeline();
+            $(toggleBtns).removeClass('toggled')
+            $(btn).addClass('toggled')
+            $(btn).toggleAttr('aria-expanded', 'false', 'true')
+            const updateAnim = $('.update-anim');
+            tl.to(updateAnim, {
+                duration: 0.5,
+                opacity: 0,
+                stagger: 0.2,
+                onComplete: () => {
+                    updateSections(i);
+                }
+            })
+            
+            
+        })
+
+       
+
+    })
+
+   
 
     
         

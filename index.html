@@ -12,42 +12,42 @@
         <h1 class="logo">The Planets</h1>
         <nav>
             <ul>
-                <li>
+                <li class="nav_list-item">
                     <span class="header_nav--decoration"></span>
-                    <a href="#" class="header_nav--btn">Mercury</a>
+                    <a href="#" class="header_nav--btn active" aria-expanded="true">Mercury</a>
                     <span class="header_nav--arrow"><img src="assets/icon-chevron.svg" alt=""></span>
                 </li>
-                <li>
+                <li class="nav_list-item">
                     <span class="header_nav--decoration"></span>
-                    <a href="#" class="header_nav--btn">Venus</a>
+                    <a href="#" class="header_nav--btn" aria-expanded="false">Venus</a>
                     <span class="header_nav--arrow"><img src="assets/icon-chevron.svg" alt=""></span>
                 </li>
-                <li>
+                <li class="nav_list-item">
                     <span class="header_nav--decoration"></span>
-                    <a href="#" class="header_nav--btn">Earth</a>
+                    <a href="#" class="header_nav--btn" aria-expanded="false">Earth</a>
                     <span class="header_nav--arrow"><img src="assets/icon-chevron.svg" alt=""></span>
                 </li>
-                <li>
+                <li class="nav_list-item">
                     <span class="header_nav--decoration"></span>
                     <a href="#" class="header_nav--btn">Mars</a>
                     <span class="header_nav--arrow"><img src="assets/icon-chevron.svg" alt=""></span>
                 </li>
-                <li>
+                <li class="nav_list-item">
                     <span class="header_nav--decoration"></span>
                     <a href="#" class="header_nav--btn">Jupiter</a>
                     <span class="header_nav--arrow"><img src="assets/icon-chevron.svg" alt=""></span>
                 </li>
-                <li>
+                <li class="nav_list-item">
                     <span class="header_nav--decoration"></span>
                     <a href="#" class="header_nav--btn">Saturn</a>
                     <span class="header_nav--arrow"><img src="assets/icon-chevron.svg" alt=""></span>
                 </li>
-                <li>
+                <li class="nav_list-item">
                     <span class="header_nav--decoration"></span>
                     <a href="#" class="header_nav--btn">Uranus</a>
                     <span class="header_nav--arrow"><img src="assets/icon-chevron.svg" alt=""></span>
                 </li>
-                <li>
+                <li class="nav_list-item">
                     <span class="header_nav--decoration"></span>
                     <a href="#" class="header_nav--btn">Neptune</a>
                     <span class="header_nav--arrow"><img src="assets/icon-chevron.svg" alt=""></span>
@@ -70,21 +70,21 @@
                 <div class="main_content--container">
                     <div class="main_content--flex">
                         <div class="main_content--image">
-                            <img src="assets/planet-mercury.svg" alt="mercury" class="planet">
+                            <img src="assets/planet-mercury.svg" alt="mercury" class="planet update-anim">
                             <img src="assets/geology-mercury.png" alt="" class="geology">
                         </div>
                         <div class="main_content--text">
                             <div>
                                 <h2 class="planet-name"></h2>
-                                <p class="planet-text"></p>
-                                <p class="source">Source : <a href="" class="source-link">Wikipedia</a><span><img src="assets/icon-source.svg" alt=""></span></p>
+                                <p class="planet-text update-anim"></p>
+                                <p class="source">Source : <a href="" class="source-link" target="_blank">Wikipedia <span><img src="assets/icon-source.svg" alt=""></span></a></p>
                                 
                             </div>
                             <section class="main_content--navigation">
                                 <ul>
-                                    <li><a href="#" class="toggle-btn">Overview</a></li>
-                                    <li><a href="#" class="toggle-btn">Structure</a></li>
-                                    <li><a href="#" class="toggle-btn">Surface</a></li>
+                                    <li><a href="#" class="toggle-btn toggled" aria-expanded="true">Overview</a></li>
+                                    <li><a href="#" class="toggle-btn" aria-expanded="false">Structure</a></li>
+                                    <li><a href="#" class="toggle-btn" aria-expanded="false">Surface</a></li>
                                 </ul>
                             </section>
                         </div>
@@ -92,19 +92,19 @@
                     <div class="main_content--data">
                         <div class="data-container">
                             <h3>Rotation Time</h3>
-                            <p class="rotation">58.6 Days</p>
+                            <p class="rotation"></p>
                         </div>
                         <div class="data-container">
                             <h3>Revolution Time</h3>
-                            <p class="revolution">87.97 Days</p>
+                            <p class="revolution"></p>
                         </div>
                         <div class="data-container">
                             <h3>Radius</h3>
-                            <p class="radius">2,439.7 KM</p>
+                            <p class="radius"></p>
                         </div>
                         <div class="data-container">
                             <h3>Average Temp.</h3>
-                            <p class="temp">430°C</p>
+                            <p class="temp"></p>
                         </div>
                     </div>
                     
@@ -119,6 +119,7 @@
         </div>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
