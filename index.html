@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-prefixed.css">
     <link rel="shortcut icon" href="assets/favicon-32x32.png" type="image/x-icon">
     <title>The Planets | Planet Facts Site</title>
 </head>
@@ -14,13 +14,13 @@
             <ul>
                 <li class="nav_list-item">
                     <span class="header_nav--decoration"></span>
-                    <a href="#" class="header_nav--btn active" aria-expanded="true">Mercury</a>
-                    <span class="header_nav--arrow"><img src="assets/icon-chevron.svg" alt=""></span>
+                    <a href="#" class="header_nav--btn active" aria-expanded="true">Mercury<span class="header_nav--arrow"><img src="assets/icon-chevron.svg" alt=""></span></a>
+                    
                 </li>
                 <li class="nav_list-item">
                     <span class="header_nav--decoration"></span>
-                    <a href="#" class="header_nav--btn" aria-expanded="false">Venus</a>
-                    <span class="header_nav--arrow"><img src="assets/icon-chevron.svg" alt=""></span>
+                    <a href="#" class="header_nav--btn" aria-expanded="false">Venus <span class="header_nav--arrow"><img src="assets/icon-chevron.svg" alt=""></span></a>
+                    
                 </li>
                 <li class="nav_list-item">
                     <span class="header_nav--decoration"></span>
@@ -60,7 +60,7 @@
         
         <section class="main_navigation">
             <ul>
-                <li><a href="#" class="toggle-btn">Overview</a></li>
+                <li><a href="#" class="toggle-btn toggled">Overview</a></li>
                 <li><a href="#" class="toggle-btn">Structure</a></li>
                 <li><a href="#" class="toggle-btn">Surface</a></li>
             </ul>
@@ -74,7 +74,7 @@
                             <img src="assets/geology-mercury.png" alt="" class="geology">
                         </div>
                         <div class="main_content--text">
-                            <div>
+                            <div class="planet-description">
                                 <h2 class="planet-name"></h2>
                                 <p class="planet-text update-anim"></p>
                                 <p class="source">Source : <a href="" class="source-link" target="_blank">Wikipedia <span><img src="assets/icon-source.svg" alt=""></span></a></p>
@@ -82,9 +82,9 @@
                             </div>
                             <section class="main_content--navigation">
                                 <ul>
-                                    <li><a href="#" class="toggle-btn toggled" aria-expanded="true">Overview</a></li>
-                                    <li><a href="#" class="toggle-btn" aria-expanded="false">Structure</a></li>
-                                    <li><a href="#" class="toggle-btn" aria-expanded="false">Surface</a></li>
+                                    <li><a href="#" class="toggle-btn-desktop toggled" aria-expanded="true">Overview</a></li>
+                                    <li><a href="#" class="toggle-btn-desktop" aria-expanded="false">Internal Structure</a></li>
+                                    <li><a href="#" class="toggle-btn-desktop" aria-expanded="false">Surface Geology</a></li>
                                 </ul>
                             </section>
                         </div>

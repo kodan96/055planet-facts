@@ -2,6 +2,7 @@ $(document).ready(() => {
 
     const headerBtns = document.querySelectorAll('.header_nav--btn')
     const toggleBtns = document.querySelectorAll('.toggle-btn')
+    const toggleBtnsDesktop = document.querySelectorAll('.toggle-btn-desktop')
     let planetData = null;
     //-------------Functions--------------//
 
@@ -112,23 +113,20 @@ $(document).ready(() => {
             
         })
 
-        if(toggleBtns[2].classList.contains('toggled')) {
-            tl.to('.geology', {
-                duration: 0.5,
-                opacity: 1,
-                stagger: 0.2,
-            }, 0)
-        } else {
-            tl.to('.geology', {
-                duration: 0.5,
-                opacity: 0,
-                
-            }, 0)
-        }
+        
 
        
 
         
+    }
+
+    const switchAccentColor = () => {
+        const currentActive = getActiveBtnIndex();
+
+        const accentColors = ['#419EBB', '#EDA249', '#6D2ED5', '#D14C32', '#EDA24970', '#CD5120', '#1EC1A2', '#2D68F0'];
+
+        $('html').css('--accentColor', accentColors[currentActive])
+
     }
 
     
@@ -144,7 +142,9 @@ $(document).ready(() => {
     })
 
     headerBtns.forEach((btn, i) => {
+        
         btn.addEventListener('click', () => {
+            
             $(headerBtns).removeClass('active')
             $(btn).addClass('active')
             $(headerBtns).attr('aria-expanded', 'false')
@@ -152,14 +152,19 @@ $(document).ready(() => {
 
             
             fetchData(i);
-            navAnimation()
+            if(window.innerWidth < 768) {
+                navAnimation()
+            }
+
+            switchAccentColor();
         })
         
     })
 
     toggleBtns.forEach((btn, i) => {
        
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
             tl = gsap.timeline();
             $(toggleBtns).removeClass('toggled')
             $(btn).addClass('toggled')
@@ -173,6 +178,19 @@ $(document).ready(() => {
                     updateSections(i);
                 }
             })
+            if(toggleBtns[2].classList.contains('toggled')) {
+                tl.to('.geology', {
+                    duration: 0.5,
+                    opacity: 1,
+                    delay: .5,
+                })
+            } else {
+                tl.to('.geology', {
+                    duration: 0.5,
+                    opacity: 0,
+                    
+                }, 0)
+            }
             
             
         })
@@ -180,6 +198,41 @@ $(document).ready(() => {
        
 
     })
+
+    toggleBtnsDesktop.forEach((btn, i) => {
+
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            tl = gsap.timeline();
+            $(toggleBtnsDesktop).removeClass('toggled')
+            $(btn).addClass('toggled')
+            $(btn).toggleAttr('aria-expanded', 'false', 'true')
+            const updateAnim = $('.update-anim');
+            tl.to(updateAnim, {
+                duration: 0.5,
+                opacity: 0,
+                stagger: 0.2,
+                onComplete: () => {
+                    updateSections(i);
+                }
+            })
+            if(toggleBtnsDesktop[2].classList.contains('toggled')) {
+                tl.to('.geology', {
+                    duration: 0.5,
+                    opacity: 1,
+                    stagger: 0.2,
+                }, 0)
+            } else {
+                tl.to('.geology', {
+                    duration: 0.5,
+                    opacity: 0,
+                    
+                }, 0)
+            }
+            
+        })
+    })
+
 
    
 
